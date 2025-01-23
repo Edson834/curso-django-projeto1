@@ -1,1 +1,1 @@
-print('olá')
+print('olá 1')
