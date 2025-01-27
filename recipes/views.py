@@ -1,12 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, 'recipes/home.html', context={'name':'Roberto'})
+    return render(request, 'recipes/pages/home.html', context={'name':'Roberto'})
 
-def sobre(request):
-    return HttpResponse('SOBRE')
-
-def contacto(request):
-    return render(request, 'me-apague/temp.html')
+def recipe(request, id):
+    return render(request, 'recipes/pages/recipe-view.html', context={'name':'Roberto'})
