@@ -1,1 +1,18 @@
+<<<<<<< HEAD
 venv
+=======
+*.tar
+*.tar.*
+*.jar
+*.exe
+*.msi
+*.deb
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+
+pkg/
+src/
+>>>>>>> 6f9f862b8f35f5275498208c207f521f230bc5a6
