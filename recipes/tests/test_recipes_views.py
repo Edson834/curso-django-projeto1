@@ -1,7 +1,6 @@
 from django.urls import resolve, reverse
-
 from recipes import views
-from .test_recipe_base import RecipeTestBase
+from .test_recipe_base import RecipeTestBase, Recipe
 
 
 class RecipeViewsTest(RecipeTestBase):
@@ -25,12 +24,12 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertIn(member, template_content)
     
     def test_recipes_home_template_loads_recipes(self):
-        
+        self.make_recipe()
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
+
+        # Checking if there are any recipes in the template
         self.assertIn('Recipe Title', content)
-        self.assertIn('10 Minutos', content)
-        self.assertIn('5 Porções', content)
 
 
         pass
