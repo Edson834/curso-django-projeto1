@@ -41,3 +41,18 @@ class RecipeHomeViewTest(RecipeTestBase):
         # Checking if there are any recipes in the template
         member = 'No recipes found here'
         self.assertIn(member, content)
+    
+    def test_recipes_make_pagination_works_with_django_pagination_and_returns_the_correct_amount_of_recipes_per_page(self):
+        recipe = self.make_recipe()
+        for c in range(100): recipe.id = None; recipe.slug=f'recipe-slug-{c}'; recipe.save()
+
+        response = self.client.get(reverse('recipes:home') + '?page=4')
+        self.assertEqual(len(response.context['recipes']), 9)
+    
+    def test_recipes_home_view_returns_to_page_1_if_requested_page_is_not_a_valid_value(self):
+        recipe = self.make_recipe()
+        for c in range(100): recipe.id = None; recipe.slug=f'recipe-slug-{c}'; recipe.save()
+
+        response = self.client.get(reverse('recipes:home') + '?page=4ok')
+        current_page = response.context['pagination_range']['current_page']
+        self.assertEqual(current_page, 1)
